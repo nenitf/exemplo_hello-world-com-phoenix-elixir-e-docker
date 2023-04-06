@@ -7,3 +7,11 @@ defmodule HelloWeb.PageController do
     render(conn, :home, layout: false)
   end
 end
+
+defmodule HelloWeb.HelloController do
+  use HelloWeb, :controller
+
+  def index(conn, _params) do
+    json(conn, %{message: "Hello world!"})
+  end
+end

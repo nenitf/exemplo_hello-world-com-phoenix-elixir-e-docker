@@ -7,28 +7,31 @@ services: # serviços que precisamos colocar em conteiner
     # command: "mix phx.server"
     # command: tail -f /dev/null
     tty: true
-    network_mode: "host"
+    ports:
+      - '4000:4000'
     volumes:
         - '.:/var/www/html'
     working_dir: /var/www/html
-
-  pgsql:
-      image: 'postgres:10'
-      ports:
-          - '${FORWARD_DB_PORT:-5432}:5432'
-      environment:
-          PGPASSWORD: '${DB_PASSWORD:-idez}'
-          POSTGRES_DB: '${DB_DATABASE:-idez}'
-          POSTGRES_USER: '${DB_USERNAME:-idez}'
-          POSTGRES_PASSWORD: '${DB_PASSWORD:-idez}'
-      volumes:
-          - 'main-pgsql:/var/lib/postgresql/data'
-      networks:
-          - main
-      healthcheck:
-          test: ["CMD", "pg_isready", "-q", "-d", "${DB_DATABASE}", "-U", "${DB_USERNAME}"]
-          retries: 3
-          timeout: 5s
+    # network_mode: "host"
+    networks:
+        - main
+  db:
+    image: 'postgres:10'
+    ports:
+        - '${FORWARD_DB_PORT:-5432}:5432'
+    environment:
+        PGPASSWORD: '${DB_PASSWORD:-hellop}'
+        POSTGRES_DB: '${DB_DATABASE:-hellod}'
+        POSTGRES_USER: '${DB_USERNAME:-hellou}'
+        POSTGRES_PASSWORD: '${DB_PASSWORD:-hellop}'
+    volumes:
+        - 'main-pgsql:/var/lib/postgresql/data'
+    networks:
+        - main
+    healthcheck:
+        test: ["CMD", "pg_isready", "-q", "-d", "${DB_DATABASE}", "-U", "${DB_USERNAME}"]
+        retries: 3
+        timeout: 5s
 networks:
     main:
         driver: bridge

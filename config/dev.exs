@@ -2,10 +2,10 @@ import Config
 
 # Configure your database
 config :hello, Hello.Repo,
-  username: "idez",
-  password: "idez",
-  hostname: "pgsql",
-  database: "idez",
+  username: "hellou",
+  password: "hellop",
+  hostname: "db",
+  database: "hellod",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
