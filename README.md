@@ -14,8 +14,8 @@ exit
 ```
 
 ```sh
-sudo chown 1000:1000 hello/**/*
 cd hello
+sudo chown -R 1000:1000 .*
 ```
 
 </details>
