@@ -5,9 +5,17 @@
 
 ```sh
 docker run -v $(pwd):/var/opt -w /var/opt -it --rm elixir bash
-chown 1000:1000 projeto
+```
+
+```sh
 mix archive.install hex phx_new
 mix phx.new exemplo_hello-phx-docker --app hello
+exit
+```
+
+```sh
+sudo chown 1000:1000 hello
+cd hello
 ```
 
 </details>
